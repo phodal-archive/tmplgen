@@ -14,6 +14,8 @@ BOT_NAME = 'blogtest'
 SPIDER_MODULES = ['blogtest.spiders']
 NEWSPIDER_MODULE = 'blogtest.spiders'
 
+DEPTH_LIMIT = 1  #just spider clothes
+HTTPERROR_ALLOWED_CODES=[403] #spider was forbidden
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'blogtest (+http://www.yourdomain.com)'
