@@ -13,7 +13,7 @@ class blogSpider(CrawlSpider):
 
     def start_requests(self):
         for i in range(0, 500):
-            yield Request('http://127.0.0.1:8000/api/app/blog_detail/%d' % i,
+            yield Request('http://127.0.0.1:8000/api/app/blog_detail/%d/' % i,
                     callback=self.parse)
 
     def parse(self, response):
