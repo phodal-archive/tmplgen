@@ -1,4 +1,5 @@
 from scrapy import Request
+import csv
 
 try:
     from scrapy.spider import Spider
@@ -6,14 +7,21 @@ except:
     from scrapy.spider import BaseSpider as Spider
 from scrapy.contrib.spiders import CrawlSpider
 
-
 class blogSpider(CrawlSpider):
     name = "blog"
     allowed_domains = ["localhost"]
 
     def start_requests(self):
-        for i in range(0, 500):
-            yield Request('http://127.0.0.1:8000/api/app/blog_detail/%d/' % i,
+        listings = []
+        with open('blogtest/spiders/100k.csv', 'rb') as csvfile:
+            spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+            for row in spamreader:
+                print row[0]
+                listings.append(row[0])
+        print listings
+        for i in listings:
+            print i
+            yield Request('http://localhost:8080/immobile-%s' % i,
                     callback=self.parse)
 
     def parse(self, response):
